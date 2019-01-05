@@ -1,0 +1,13 @@
+In India there is a large number of cases of stolen mobile devices or cars or other assets . 
+Not only this there is a probabilty of misleading of the buyer by selling stolen devices or selling devices saying it is second hand but being third/fourth hand indeed .
+As a consumer or owner of the device , we always want to verify if the device is genuine or not .
+Also not every person has the strength / time / knowledge to report to the police of the stolen device which is itself a time consuming task .
+Here we have a concrete trustworthy solution to this problem using blockchain .
+Any device which has a unique id associated with it like IMEI number in electronic devices will be registered in the blockchain with his/her public key as owner .
+whenever he/she tries to sell the device both owner and buyer will sign the transactions and buy using crypto piggy and owner will be changed in the blockchain .
+Now whenever the device is going to be sold , the buyer can easily verify the owner and the the whole supply chain to detect if it is first/second/third hand .
+Also owner can report the device as stolen = true in blockchain , which will inform the buyer immediately.
+ 
+
+           
+

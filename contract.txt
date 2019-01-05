@@ -1,0 +1,75 @@
+pragma solidity ^0.5.0;
+
+
+contract IMEI_CONTRACT {
+    
+     mapping(string => IMEI_INFO )  IMEI_INFOs;
+    
+
+    struct IMEI_INFO{
+        address owner;
+        bool sell;
+        bool lost;
+        uint handNo;
+        uint REG_TIME_STAMP;
+    }
+    
+    function registerPhone(string memory IMEI_NO) public{
+      require(IMEI_INFOs[IMEI_NO].owner== 0x0000000000000000000000000000000000000000);
+      IMEI_INFO memory INFO ;
+      INFO.owner = msg.sender;
+      INFO.sell=false;
+      INFO.lost=false;
+      INFO.handNo=1;
+      INFO.REG_TIME_STAMP = block.timestamp;
+      IMEI_INFOs[IMEI_NO]=INFO;
+      
+    }
+    function returnOwner(string memory IMEI_NO) public view returns (address){
+        return IMEI_INFOs[IMEI_NO].owner;
+    }
+      function returnSell(string memory IMEI_NO) public view returns (bool){
+        return IMEI_INFOs[IMEI_NO].sell;
+    }
+  function returnLost(string memory IMEI_NO) public view returns (bool){
+        return IMEI_INFOs[IMEI_NO].lost;
+    }
+    
+     function returnHandNo(string memory IMEI_NO) public view returns (uint){
+        return IMEI_INFOs[IMEI_NO].handNo;
+    }
+    
+    function returnTimeStamp(string memory IMEI_NO) public view returns (uint){
+    
+        return IMEI_INFOs[IMEI_NO].REG_TIME_STAMP;
+    }
+    
+    
+    function initiateSell(string memory IMEI_NO) public{
+        require(IMEI_INFOs[IMEI_NO].owner==msg.sender);
+        IMEI_INFOs[IMEI_NO].sell=true;
+    }
+    function declineSell(string memory IMEI_NO) public{
+        require(IMEI_INFOs[IMEI_NO].owner==msg.sender);
+        IMEI_INFOs[IMEI_NO].sell=false;
+    }
+    function buy(string memory IMEI_NO) public{
+        require( IMEI_INFOs[IMEI_NO].sell==true );
+        require( IMEI_INFOs[IMEI_NO].lost==false );
+        require( IMEI_INFOs[IMEI_NO].owner != msg.sender);
+        
+        IMEI_INFOs[IMEI_NO].owner=msg.sender;
+        IMEI_INFOs[IMEI_NO].handNo=IMEI_INFOs[IMEI_NO].handNo+1;
+        IMEI_INFOs[IMEI_NO].sell==false;
+        
+        
+    }
+    function reportLost(string memory IMEI_NO) public{
+        require(IMEI_INFOs[IMEI_NO].owner==msg.sender);
+        IMEI_INFOs[IMEI_NO].lost==true;
+    }
+
+    
+
+    
+}
